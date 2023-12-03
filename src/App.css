@@ -2,37 +2,115 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.table-div {
+  margin: 1rem;
+  border-radius: 0px 0px 5px 5px;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+    rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.table {
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.table th,
+.table td {
+  border-top: 1px solid gainsboro;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.table th {
+  transition: 0.2s;
+  color: whitesmoke;
+  cursor: pointer;
+  color: #252525;
+}
+
+input {
+  width: -webkit-fill-available;
+  padding: 0.6rem;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  outline: gray;
+}
+
+.trash-th {
   display: flex;
-  flex-direction: column;
+  justify-content: end;
+  width: -webkit-fill-available;
+}
+
+.trash {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background: #ed143dde;
+  color: whitesmoke;
+  padding: 0.7rem;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: -webkit-fill-available;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-checked {
+  width: min-content;
+  cursor: pointer;
+}
+
+.edit {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0rem 0.5rem;
+  color: gray;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.trash-can {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin: 0rem 0.5rem;
+  color: #ed143dde;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.check-box-th {
+  display: flex;
+  align-items: baseline;
+  width: -webkit-fill-available;
+  justify-content: flex-start;
+  gap: 3.5rem;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin: 1rem;
+}
+
+.pagination button {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  margin: 0rem 0.3rem;
+  color: gray;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.gray-bg {
+  background-color: gainsboro;
+  color: black;
 }

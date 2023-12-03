@@ -6,6 +6,7 @@ import { faAngleRight, faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Pagination = () => {
   const { handlePages, currentPage, totalPerson } = useContext(AdminContext);
+
   return (
     <div className="pagination">
       <button onClick={() => handlePages(1)} disabled={currentPage === 1}>

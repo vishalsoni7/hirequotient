@@ -11,12 +11,11 @@ import {
 import Pagination from "./Pagination";
 
 export const AdminPage = () => {
-  const { data, currentData, setData, deleteData, search } =
+  const { data, currentData, setData, search, setSearchResults } =
     useContext(AdminContext);
   const [input, setInput] = useState({});
   const [isChecked, setIsChecked] = useState([]);
   const [checkAll, setCheckAll] = useState(false);
-  const [style, setStyle] = useState(false);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -38,7 +37,6 @@ export const AdminPage = () => {
   };
 
   const handleCheckBox = (e, id) => {
-    setStyle(true);
     const { checked } = e.target;
 
     if (id === "all") {
@@ -56,7 +54,15 @@ export const AdminPage = () => {
     }
   };
 
-  console.log(style);
+  const deleteData = (ids) => {
+    const idsToDelete = Array.isArray(ids) ? ids : [ids];
+    const filteredData = data.filter(
+      (person) => !idsToDelete.includes(person.id)
+    );
+    setData(filteredData);
+    setSearchResults([]);
+    setIsChecked([]);
+  };
 
   useEffect(() => {
     setCheckAll(isChecked.length === currentData.length);
@@ -75,11 +81,18 @@ export const AdminPage = () => {
               <th></th>
               <th></th>
               <th className="trash-th">
-                <FontAwesomeIcon
-                  icon={faTrash}
-                  className="trash"
-                  onClick={() => deleteData(isChecked)}
-                />
+                {isChecked.length > 0 ? (
+                  <span className="trash" onClick={() => deleteData(isChecked)}>
+                    {" "}
+                    Delete Selected{" "}
+                  </span>
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faTrash}
+                    className="trash"
+                    onClick={() => deleteData(isChecked)}
+                  />
+                )}
               </th>
             </tr>
           </thead>

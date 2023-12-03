@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import { fetchData } from "./utils";
 
 export const AdminContext = createContext();
 
@@ -20,35 +21,6 @@ export const AdminProvider = ({ children }) => {
     setCurrentPage(page);
   };
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(
-        "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
-      );
-      const jsonData = await res.json();
-
-      if (Array.isArray(jsonData)) {
-        const newVar = jsonData.map((curr) => {
-          return { ...curr, isEditable: false };
-        });
-        setData(newVar);
-      } else {
-        console.error("Data received is not an array:", jsonData);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const deleteData = (ids) => {
-    const idsToDelete = Array.isArray(ids) ? ids : [ids];
-    const filteredData = data.filter(
-      (person) => !idsToDelete.includes(person.id)
-    );
-    setData(filteredData);
-    setSearchResults([]);
-  };
-
   const search = (e) => {
     const searchTerm = e.target.value.toLowerCase();
     const searchData = data.filter(
@@ -64,15 +36,15 @@ export const AdminProvider = ({ children }) => {
     data,
     currentData,
     setData,
-    deleteData,
     search,
     handlePages,
     currentPage,
     totalPerson,
+    setSearchResults,
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData(setData);
   }, []);
 
   return (
